@@ -1,0 +1,192 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    
+    //background
+    &::before{
+        content: "";
+        position: absolute;
+        background-image: url('/images/pattern-bg.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 35vh;
+        width: 100%;
+        z-index: -1;
+    }
+
+    &.loading{
+        .main__loading{
+            display: grid;
+        }
+    }
+    
+    &__loading{
+        display: none;
+        top: 0;
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 20;
+        background-color: rgba(0,0,0,.9);
+        place-items: center;
+
+        &-circle{
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 7px solid rgba(255,255,255,.2);
+            border-top-color: $White;
+            animation: spin 2s linear infinite;
+
+            @keyframes spin {
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+
+    &__map{
+        position: absolute;
+        z-index: 2;
+        top: 35vh;
+        height: 65vh;
+        width: 100%;
+    }
+
+    .container{
+        padding-top: 20px;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__tittle{
+        color: $White;
+        margin-bottom: 50px;
+
+        h1{
+            text-align: center;
+            font-weight: 500;
+            font-size: 4rem;
+        }
+
+        @include breakpoint-down(medium){
+            margin-bottom: 20px;
+            width: 90%;
+            h1{
+                font-size: $LargeFont;
+            }
+        }
+    }
+
+    &__form{
+        position: relative;
+        background-color: $White;
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        width: 50%;
+        border-radius: 10px;
+        overflow: hidden;
+
+        input{
+            position: absolute;
+            margin-left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: $SmallFont;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            font-weight: 500;
+            width: calc(100% - 70px);
+        }
+
+        button{
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            background-color: $VeryDarkGray;
+            outline: none;
+            border: none;
+            background-image: url('/images/icon-arrow.svg');
+            background-repeat: no-repeat;
+            background-size: 20%;
+            background-position: center;
+        }
+
+        @include breakpoint-down(medium){
+            margin: 0;
+            width: 100%;
+
+            input{
+                font-size: $VerySmallFont;
+            }
+        }
+    }
+
+    &__info{
+        margin-top: 60px;
+        height: 18rem;
+        border-radius: 20px;
+        width: 100%;
+        background-color: $White;
+        opacity: .98;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        &-content{
+            padding: 20px;
+            h2{
+                padding: 10px 0;
+                font-size: $VerySmallFont;
+                color: $DarkGray;
+                letter-spacing: 1px;
+            }
+            span{
+                font-size: $LargeFont;
+                font-weight: 800;
+                width: 100%;
+            }
+
+            @include breakpoint-up(large){
+                &:not(&:last-child){
+                    border-right: 1px solid $LightGray;
+                }
+            }
+        }
+
+        @include breakpoint-down(medium){
+            max-height: 40vh;
+            margin-top: 20px;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto;
+            height: auto;
+            align-items: center;
+            padding: 5px 0;
+            overflow-y: scroll;
+            &-content{
+                text-align: center;
+                padding: 10px;
+                border: none;
+
+                h2{
+                    padding: 0px;
+                    font-size: $VerySmallFont;
+                }
+                span{
+                    font-size: $SmallFont;
+                }
+            }
+        }
+    }
+
+}
