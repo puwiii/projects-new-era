@@ -43,12 +43,11 @@ function makeRequest(request){
     fetch(request)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
+        main.classList.remove('loading')
         if (data.code === 422) {
             alert('Ingrese una IP valida') 
         }
         else{
-            main.classList.remove('loading')
             let ipAddress = document.getElementById('ipAddress')
             let location = document.getElementById('location')
             let timeZone = document.getElementById('timeZone')
